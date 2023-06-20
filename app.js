@@ -1,19 +1,17 @@
-const connnectDB = require('./db/connect')
 const express = require('express')
 const app = express()
 const tasks = require('./routes/tasks')
+const connnectDB = require('./db/connect')
 require('dotenv').config()
 
 //middleware
+app.use(express.static('./public'))
 app.use(express.json()) // it passes data sent into req.body
 
 //routes
-app.get('/hello', (req, res) => {
-    res.send("just having fun")
-})
-const port = 3000
-
 app.use('/api/v1/tasks', tasks)
+
+const port = 5000
 
 const start = async() => {
     try {
